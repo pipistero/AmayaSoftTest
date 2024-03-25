@@ -1,3 +1,4 @@
+using System;
 using Game.Data;
 using Game.Grid;
 using UnityEngine;
@@ -11,14 +12,17 @@ namespace Game.View
 
         private GameData _gameData;
         
-        public void Initialize(GameData gameData)
+        public void SetData(GameData gameData)
         {
             _gameData = gameData;
         }
 
         public void StartGame()
         {
-            _gridView.Initialize(_gameData.LevelsData[2]);
+            if (_gameData == null)
+                throw new NullReferenceException("Missing GameData in GameView; See SetData method");
+            
+            _gridView.Initialize(_gameData.GetFirstLevel());
         }
     }
 }

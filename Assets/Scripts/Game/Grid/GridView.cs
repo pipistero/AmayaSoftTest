@@ -30,11 +30,9 @@ namespace Game.Grid
         {
             _gridLayoutGroup.constraintCount = _levelData.ColumnsCount;
 
-            var itemsCount = _levelData.ColumnsCount * _levelData.LinesCount;
-            
-            for (var i = 0; i < itemsCount; i++)
+            foreach (var cardData in _levelData.GetCardsData())
             {
-                InitializeCardView(_levelData.BundlesData[0].CardsData[0]);
+                InitializeCardView(cardData);
             }
         }
 

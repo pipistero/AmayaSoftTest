@@ -23,5 +23,5 @@ MonoBehaviour:
     _linesCount: 2
   - _bundlesData:
     - {fileID: 11400000, guid: 525729850eb751f4890c87c360f0c9ed, type: 2}
-    _columnsCount: 4
-    _linesCount: 2
+    _columnsCount: 3
+    _linesCount: 3

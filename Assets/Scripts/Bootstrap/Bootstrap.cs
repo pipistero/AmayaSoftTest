@@ -14,7 +14,7 @@ namespace Bootstrap
 
         private void Start()
         {
-            _gameView.Initialize(_gameData);
+            _gameView.SetData(_gameData);
             _gameView.StartGame();
         }
     }

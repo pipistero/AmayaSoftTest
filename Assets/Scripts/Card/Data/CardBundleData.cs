@@ -1,3 +1,4 @@
+using Extensions;
 using UnityEngine;
 
 namespace Card.Data
@@ -7,6 +8,9 @@ namespace Card.Data
     {
         [SerializeField] private CardData[] _cardsData;
 
-        public CardData[] CardsData => _cardsData;
+        public CardData GetRandomCardData()
+        {
+            return _cardsData.GetRandomElement();
+        }
     }
 }
