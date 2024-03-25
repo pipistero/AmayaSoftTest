@@ -1,10 +1,11 @@
 using Card.Data;
+using Pool.Abstraction;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Card.View
 {
-    public class CardView : MonoBehaviour
+    public class CardView : MonoBehaviour, IPoolElement
     {
         [SerializeField] private Image _icon;
 

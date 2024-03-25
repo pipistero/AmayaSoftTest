@@ -1,5 +1,6 @@
-using Card.View;
+using Card.Data;
 using Level.Data;
+using Pool;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,8 +14,8 @@ namespace Game.Grid
         [Header("Holder")] 
         [SerializeField] private Transform _holder;
 
-        [Header("Prefab")] 
-        [SerializeField] private CardView _cardPrefab;
+        [Header("Pool")] 
+        [SerializeField] private CardObjectPool _objectPool;
 
         private LevelData _levelData;
         
@@ -31,11 +32,20 @@ namespace Game.Grid
 
             var itemsCount = _levelData.ColumnsCount * _levelData.LinesCount;
             
-            for (int i = 0; i < itemsCount; i++)
+            for (var i = 0; i < itemsCount; i++)
             {
-                var cardView = Instantiate(_cardPrefab, _holder);
-                cardView.Initialize(_levelData.BundlesData[0].CardsData[0]);
+                InitializeCardView(_levelData.BundlesData[0].CardsData[0]);
             }
+        }
+
+        private void InitializeCardView(CardData cardData)
+        {
+            var cardView = _objectPool.GetElement();
+                
+            cardView.gameObject.SetActive(true);
+            cardView.transform.SetParent(_holder);
+                
+            cardView.Initialize(cardData);
         }
     }
 }
