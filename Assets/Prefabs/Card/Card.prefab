@@ -280,7 +280,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7553326227599197256}
   - component: {fileID: 3336893312885918489}
-  - component: {fileID: 8263049672810641321}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -324,20 +323,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 7553326226670166957}
-  _cardViewAnimation: {fileID: 8263049672810641321}
+  _background: {fileID: 7553326227707132744}
+  _cardViewAnimation: {fileID: 0}
   _button: {fileID: 8604879520991501642}
---- !u!114 &8263049672810641321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7553326227599197259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7141de4d3549461f996f9b8f194e6525, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7553326227707132746
 GameObject:
   m_ObjectHideFlags: 0

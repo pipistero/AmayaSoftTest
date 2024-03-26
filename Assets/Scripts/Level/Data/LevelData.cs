@@ -45,7 +45,7 @@ namespace Level.Data
             return _availableCards;
         }
 
-        public void OnCardClicked(CardView cardView, CardData cardData)
+        public async void OnCardClicked(CardView cardView, CardData cardData)
         {
             if (cardData.Identifier != _currentTarget.Identifier)
             {
@@ -53,7 +53,7 @@ namespace Level.Data
                 return;
             }
             
-            cardView.PlayCorrectAnimation();
+            await cardView.PlayCorrectAnimation();
             _availableCards.Remove(_currentTarget);
             
             SelectCurrentTarget();

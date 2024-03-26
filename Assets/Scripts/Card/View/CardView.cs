@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Card.Data;
 using Pool.Abstraction;
 using UnityEngine;
@@ -8,35 +9,55 @@ namespace Card.View
 {
     public class CardView : MonoBehaviour, IPoolElement
     {
+        #region Consts
+
+        private readonly Color CorrectColor = Color.green;
+        private readonly Color IncorrectColor = Color.red;
+        private readonly Color BaseColor = Color.white;
+
+        #endregion
+        
         public event Action<CardView, CardData> Clicked;  
         
         [Header("Visual")]
         [SerializeField] private Image _icon;
-
-        [Header("Animations")] 
-        [SerializeField] private CardViewAnimation _cardViewAnimation;
+        [SerializeField] private Image _background;
 
         [Header("Button")] 
         [SerializeField] private Button _button;
         
         private CardData _cardData;
+        private bool _isDone;
 
         public void Initialize(CardData cardData)
         {
             _cardData = cardData;
 
+            ClearView();
             UpdateView();
             InitializeButton();
         }
 
-        public void PlayCorrectAnimation()
+        public async Task PlayCorrectAnimation()
         {
-            _cardViewAnimation.PlayCorrectAnimation();
+            if (_isDone)
+                return;
+            
+            _background.color = CorrectColor;
+            
+            _isDone = true;
         }
 
-        public void PlayIncorrectAnimation()
+        public async Task PlayIncorrectAnimation()
         {
-            _cardViewAnimation.PlayIncorrectAnimation();
+            if (_isDone)
+                return;
+            
+            _background.color = IncorrectColor;
+            
+            await Task.Delay(TimeSpan.FromMilliseconds(500));
+
+            _background.color = BaseColor;
         }
         
         private void InitializeButton()
@@ -48,6 +69,12 @@ namespace Card.View
         private void UpdateView()
         {
             _icon.sprite = _cardData.Sprite;
+        }
+
+        private void ClearView()
+        {
+            _isDone = false;
+            _background.color = BaseColor;
         }
     }
 }
