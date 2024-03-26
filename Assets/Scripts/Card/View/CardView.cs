@@ -69,6 +69,7 @@ namespace Card.View
         private void UpdateView()
         {
             _icon.sprite = _cardData.Sprite;
+            _icon.transform.rotation = Quaternion.Euler(Vector3.forward * _cardData.Rotation);
         }
 
         private void ClearView()
