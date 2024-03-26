@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using Card.Data;
-using Extensions;
 using UnityEngine;
 
 namespace Level.Data
@@ -10,7 +9,7 @@ namespace Level.Data
     public class LevelData
     {
         [Header("Cards data")]
-        [SerializeField] private CardBundleData[] _bundlesData;
+        [SerializeField] private CardBundleData _bundleData;
         
         [Header("Layout settings")]
         [SerializeField] private int _columnsCount;
@@ -18,35 +17,19 @@ namespace Level.Data
         
         public int ColumnsCount => _columnsCount;
 
-        private List<string> _levelIdentifiers;
-
         public CardData[] GetCardsData()
         {
             var cardsDataCount = _columnsCount * _linesCount;
-            var result = new CardData[cardsDataCount];
-            
-            _levelIdentifiers = new List<string>();
 
-            for (var i = 0; i < cardsDataCount; i++)
-            {
-                var cardData = GetRandomCardData();
+            if (cardsDataCount > _bundleData.CardsData.Length)
+                throw new Exception($"There is not enough CardsData for level with {cardsDataCount} cards count");
 
-                while (_levelIdentifiers.Contains(cardData.Identifier))
-                {
-                    cardData = GetRandomCardData();
-                }
-                
-                _levelIdentifiers.Add(cardData.Identifier);
-                
-                result[i] = cardData;
-            }
+            var result = _bundleData.CardsData
+                .OrderBy(_ => Guid.NewGuid())
+                .Take(cardsDataCount)
+                .ToArray();
 
             return result;
-        }
-
-        private CardData GetRandomCardData()
-        {
-            return _bundlesData.GetRandomElement().GetRandomCardData();
         }
     }
 }

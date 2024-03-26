@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 419c6f976c9848a088fc1cc4b6fafb63, type: 3}
-  m_Name: New CardBundleData
+  m_Name: CardsLettersBundle
   m_EditorClassIdentifier: 
   _cardsData:
   - _identifier: A
@@ -63,23 +63,3 @@ MonoBehaviour:
     _sprite: {fileID: -5001085640463096552, guid: c66a98639b268aa44a53f1b745127cb0, type: 3}
   - _identifier: Z
     _sprite: {fileID: 3539555106843919260, guid: c66a98639b268aa44a53f1b745127cb0, type: 3}
-  - _identifier: 1
-    _sprite: {fileID: 1422184923334757970, guid: cc648ad2ee3701b478321a29c63deb28, type: 3}
-  - _identifier: 2
-    _sprite: {fileID: 1808195818850983521, guid: cc648ad2ee3701b478321a29c63deb28, type: 3}
-  - _identifier: 3
-    _sprite: {fileID: -7900951133411543555, guid: cc648ad2ee3701b478321a29c63deb28, type: 3}
-  - _identifier: 4
-    _sprite: {fileID: 2267071060405275165, guid: cc648ad2ee3701b478321a29c63deb28, type: 3}
-  - _identifier: 5
-    _sprite: {fileID: -7398325283844340781, guid: cc648ad2ee3701b478321a29c63deb28, type: 3}
-  - _identifier: 6
-    _sprite: {fileID: -7015292045520539579, guid: cc648ad2ee3701b478321a29c63deb28, type: 3}
-  - _identifier: 7
-    _sprite: {fileID: -675344402919758444, guid: cc648ad2ee3701b478321a29c63deb28, type: 3}
-  - _identifier: 8
-    _sprite: {fileID: 3547489320769246608, guid: cc648ad2ee3701b478321a29c63deb28, type: 3}
-  - _identifier: 9
-    _sprite: {fileID: -1155199509967091035, guid: a10364414144a4b438e866287962b80a, type: 3}
-  - _identifier: 10
-    _sprite: {fileID: 4142021021139464533, guid: 87c8e81cfdedf104584dfea9faa9a7a8, type: 3}

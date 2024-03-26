@@ -7,8 +7,9 @@ namespace Card.View
 {
     public class CardView : MonoBehaviour, IPoolElement
     {
+        [Header("Visual")]
         [SerializeField] private Image _icon;
-
+        
         private CardData _cardData;
 
         public void Initialize(CardData cardData)

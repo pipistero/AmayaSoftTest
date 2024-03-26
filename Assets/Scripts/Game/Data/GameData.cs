@@ -10,23 +10,26 @@ namespace Game.Data
         [SerializeField] private LevelData[] _levelsData;
 
         private int _currentLevelIndex;
+        private LevelData _currentLevel;
 
         public LevelData GetFirstLevel()
         {
             _currentLevelIndex = 0;
+            _currentLevel = _levelsData[_currentLevelIndex];
 
-            return _levelsData[_currentLevelIndex];
+            return _currentLevel;
         }
 
         [CanBeNull]
         public LevelData GetNextLevel()
         {
             _currentLevelIndex++;
+            _currentLevel = _levelsData[_currentLevelIndex];
 
             if (_currentLevelIndex == _levelsData.Length - 1)
                 return null;
 
-            return _levelsData[_currentLevelIndex];
+            return _currentLevel;
         }
     }
 }

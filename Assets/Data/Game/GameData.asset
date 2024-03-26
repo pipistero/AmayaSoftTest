@@ -10,18 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f3c5d5f84f44956a1aaaf4320090644, type: 3}
-  m_Name: New GameData
+  m_Name: GameData
   m_EditorClassIdentifier: 
   _levelsData:
-  - _bundlesData:
-    - {fileID: 11400000, guid: 525729850eb751f4890c87c360f0c9ed, type: 2}
+  - _bundleData: {fileID: 11400000, guid: 0a5ce0bd20a78ac4bbd1ae3fb052f595, type: 2}
     _columnsCount: 3
     _linesCount: 1
-  - _bundlesData:
-    - {fileID: 11400000, guid: 525729850eb751f4890c87c360f0c9ed, type: 2}
+  - _bundleData: {fileID: 11400000, guid: 525729850eb751f4890c87c360f0c9ed, type: 2}
     _columnsCount: 3
     _linesCount: 2
-  - _bundlesData:
-    - {fileID: 11400000, guid: 525729850eb751f4890c87c360f0c9ed, type: 2}
+  - _bundleData: {fileID: 11400000, guid: 0a5ce0bd20a78ac4bbd1ae3fb052f595, type: 2}
     _columnsCount: 3
     _linesCount: 3
