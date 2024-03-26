@@ -404,6 +404,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 3430229380956753244}
-  _startYPosition: 80
-  _ease: 29
-  _duration: 1
+  _startScale: 0.3
+  _ease: 30
+  _duration: 1.3
