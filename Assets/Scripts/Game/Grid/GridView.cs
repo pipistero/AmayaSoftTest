@@ -22,7 +22,7 @@ namespace Game.Grid
         [Header("Animation")] 
         [SerializeField] private GridViewAnimation _viewAnimation;
 
-        private List<CardView> _instatiatedViews = new List<CardView>();
+        private readonly List<CardView> _instantiatedViews = new List<CardView>();
         private LevelData _levelData;
         
         public void Initialize(LevelData levelData)
@@ -51,12 +51,12 @@ namespace Game.Grid
 
         private void ClearView()
         {
-            foreach (var view in _instatiatedViews)
+            foreach (var view in _instantiatedViews)
             {
                 _objectPool.ReturnElement(view);
             }
             
-            _instatiatedViews.Clear();
+            _instantiatedViews.Clear();
         }
 
         private void InitializeCardView(CardData cardData)
@@ -70,7 +70,7 @@ namespace Game.Grid
             
             cardView.Clicked += OnCardViewClicked;
             
-            _instatiatedViews.Add(cardView);
+            _instantiatedViews.Add(cardView);
         }
 
         private void OnCardViewClicked(CardView cardView, CardData cardData)

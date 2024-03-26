@@ -74,6 +74,11 @@ namespace Game.View
             await _loadingWindow.Close();
         }
 
+        private async void EndGame()
+        {
+            await _endGameWindow.Open();
+        }
+
         private void PlayAppearAnimation()
         {
             _gridView.PlayAppearAnimation();
@@ -103,7 +108,7 @@ namespace Game.View
 
             if (_currentLevel == null)
             {
-                _endGameWindow.Open();
+                EndGame();
                 return;
             }
             
