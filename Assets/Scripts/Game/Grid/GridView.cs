@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Card.Data;
+using Card.View;
 using Level.Data;
 using Pool;
 using UnityEngine;
@@ -17,6 +19,7 @@ namespace Game.Grid
         [Header("Pool")] 
         [SerializeField] private CardObjectPool _objectPool;
 
+        private List<CardView> _instatiatedViews = new List<CardView>();
         private LevelData _levelData;
         
         public void Initialize(LevelData levelData)
@@ -28,12 +31,24 @@ namespace Game.Grid
 
         private void UpdateView()
         {
+            ClearView();
+            
             _gridLayoutGroup.constraintCount = _levelData.ColumnsCount;
-
+            
             foreach (var cardData in _levelData.GetCardsData())
             {
                 InitializeCardView(cardData);
             }
+        }
+
+        private void ClearView()
+        {
+            foreach (var view in _instatiatedViews)
+            {
+                _objectPool.ReturnElement(view);
+            }
+            
+            _instatiatedViews.Clear();
         }
 
         private void InitializeCardView(CardData cardData)
@@ -44,6 +59,15 @@ namespace Game.Grid
             cardView.transform.SetParent(_holder);
                 
             cardView.Initialize(cardData);
+            
+            cardView.Clicked += OnCardViewClicked;
+            
+            _instatiatedViews.Add(cardView);
+        }
+
+        private void OnCardViewClicked(CardView cardView, CardData cardData)
+        {
+            _levelData.OnCardClicked(cardView, cardData);
         }
     }
 }

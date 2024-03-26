@@ -1,3 +1,5 @@
+using System;
+using Card.Data;
 using JetBrains.Annotations;
 using Level.Data;
 using UnityEngine;
@@ -7,6 +9,8 @@ namespace Game.Data
     [CreateAssetMenu(fileName = "New GameData", menuName = "Game/Data")]
     public class GameData : ScriptableObject
     {
+        public event Action LevelCompleted;
+        
         [SerializeField] private LevelData[] _levelsData;
 
         private int _currentLevelIndex;
@@ -17,19 +21,30 @@ namespace Game.Data
             _currentLevelIndex = 0;
             _currentLevel = _levelsData[_currentLevelIndex];
 
+            _currentLevel.Completed += OnLevelCompleted;
+            
             return _currentLevel;
         }
 
         [CanBeNull]
         public LevelData GetNextLevel()
         {
+            _currentLevel.Completed -= OnLevelCompleted;
+            
             _currentLevelIndex++;
-            _currentLevel = _levelsData[_currentLevelIndex];
-
-            if (_currentLevelIndex == _levelsData.Length - 1)
+            
+            if (_currentLevelIndex == _levelsData.Length)
                 return null;
+            
+            _currentLevel = _levelsData[_currentLevelIndex];
+            _currentLevel.Completed += OnLevelCompleted;
 
             return _currentLevel;
+        }
+
+        private void OnLevelCompleted()
+        {
+            LevelCompleted?.Invoke();
         }
     }
 }
