@@ -19,6 +19,9 @@ namespace Game.Grid
         [Header("Pool")] 
         [SerializeField] private CardObjectPool _objectPool;
 
+        [Header("Animation")] 
+        [SerializeField] private GridViewAnimation _viewAnimation;
+
         private List<CardView> _instatiatedViews = new List<CardView>();
         private LevelData _levelData;
         
@@ -27,6 +30,11 @@ namespace Game.Grid
             _levelData = levelData;
             
             UpdateView();
+        }
+
+        public void PlayAppearAnimation()
+        {
+            _viewAnimation.PlayAppearAnimation();
         }
 
         private void UpdateView()

@@ -19,6 +19,3 @@ MonoBehaviour:
   - _bundleData: {fileID: 11400000, guid: 525729850eb751f4890c87c360f0c9ed, type: 2}
     _columnsCount: 3
     _linesCount: 2
-  - _bundleData: {fileID: 11400000, guid: 0a5ce0bd20a78ac4bbd1ae3fb052f595, type: 2}
-    _columnsCount: 3
-    _linesCount: 3

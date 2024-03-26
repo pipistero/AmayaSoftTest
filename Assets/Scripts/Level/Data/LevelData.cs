@@ -13,7 +13,7 @@ namespace Level.Data
     public class LevelData
     {
         public event Action<CardData> TargetChanged;
-        public event Action Completed; 
+        public event Action Completed;
         
         [Header("Cards data")]
         [SerializeField] private CardBundleData _bundleData;

@@ -1,24 +1,45 @@
 using System;
 using Card.Data;
+using DG.Tweening;
 using Game.Data;
 using Game.Grid;
 using Level.Data;
 using TMPro;
 using UnityEngine;
+using Window;
 
 namespace Game.View
 {
     public class GameView : MonoBehaviour
     {
+        #region Consts
+
+        private readonly Color TargetTextClearColor = new Color(0.1f, 0.1f, 0.1f, 0f);
+            
+        #endregion
+        
         [Header("Grid")] 
         [SerializeField] private GridView _gridView;
 
         [Header("Target")] 
         [SerializeField] private TextMeshProUGUI _targetText;
+        [SerializeField] private float _targetTextFadeDuration;
 
+        [Header("Windows")] 
+        [SerializeField] private EndGameWindow _endGameWindow;
+        [SerializeField] private LoadingWindow _loadingWindow;
+        
         private GameData _gameData;
         private LevelData _currentLevel;
-        
+
+        private void Start()
+        {
+            _loadingWindow.Close();
+            _endGameWindow.Close();
+            
+            _endGameWindow.Restart += OnRestart;
+        }
+
         public void SetData(GameData gameData)
         {
             _gameData = gameData;
@@ -31,10 +52,43 @@ namespace Game.View
 
             _currentLevel = _gameData.GetFirstLevel();
 
-            InitializeEvents();
+            InitializeLevelEvents();
             _gameData.LevelCompleted += OnLevelCompleted;
             
             _gridView.Initialize(_currentLevel);
+            PlayAppearAnimation();
+        }
+
+        private async void RestartGame()
+        {
+            await _endGameWindow.Close();
+            await _loadingWindow.Open();
+            
+            _currentLevel = _gameData.GetFirstLevel();
+            
+            InitializeLevelEvents();
+            
+            _gridView.Initialize(_currentLevel);
+            PlayAppearAnimation();
+            
+            await _loadingWindow.Close();
+        }
+
+        private void PlayAppearAnimation()
+        {
+            _gridView.PlayAppearAnimation();
+            _targetText.color = TargetTextClearColor;
+            _targetText.DOFade(1f, _targetTextFadeDuration);
+        }
+        
+        private void InitializeLevelEvents()
+        {
+            _currentLevel.TargetChanged += OnTargetChanged; 
+        }
+
+        private void OnRestart()
+        {
+            RestartGame();
         }
 
         private void OnTargetChanged(CardData cardData)
@@ -49,18 +103,13 @@ namespace Game.View
 
             if (_currentLevel == null)
             {
-                Debug.Log("Done");
+                _endGameWindow.Open();
                 return;
             }
             
-            InitializeEvents();
+            InitializeLevelEvents();
             
             _gridView.Initialize(_currentLevel);
-        }
-
-        private void InitializeEvents()
-        {
-            _currentLevel.TargetChanged += OnTargetChanged; 
         }
     }
 }
